@@ -1,0 +1,76 @@
+/*
+=== FONT MIXINS ===
+*/
+
+.fa {
+	font: normal normal normal 14px/1 'FontAwesome';
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+}
+
+/*
+=== BORDER MIXINS ===
+*/
+
+.borderRadius(@border) {
+	border-radius: @border;
+	-webkit-border-radius: @border;
+	-moz-border-radius: @border;
+	-o-border-radius: @border;
+	-ms-border-radius: @border;
+}
+
+/*
+=== FLEX MIXINS ===
+*/
+
+.flexColumn {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+}
+
+.flexBetween {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+}
+
+.flexWrap {
+	display: flex;
+	display: -webkit-flex;
+	flex-wrap: wrap;
+}
+
+.flexEnd {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: flex-end;
+	-webkit-justify-content: flex-end;	
+}
+
+/*
+=== OTHER MIXINS ===
+*/
+
+.transition {
+	@duration: 0.4s;
+	-webkit-transition: @duration all ease;
+	-moz-transition: @duration all ease;
+	-ms-transition: @duration all ease;
+	-o-transition: @duration all ease;
+	transition: @duration all ease;
+}
+
+.boxSizing {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+.boxShadow(@size, @color) {
+	box-shadow: @size @color;
+	-webkit-box-shadow: @size @color;
+	-moz-box-shadow: @size @color;
+}
