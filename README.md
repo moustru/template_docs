@@ -6,6 +6,7 @@
 3. Правила наименования селекторов
 4. Правила свойств
 5. Префиксы в миксинах
+6. Цветовая схема
 
 #### Переменные:
 Цвет необходимо указывать в названии переменной. Например:  
@@ -20,7 +21,7 @@
 * Если определены стили для классов, которые совпадают по имени хотя бы на 50% - выделяем общий селектор и наследуем элементы. Пример:  
 
 _Плохо:_
-```css
+```less
 .ul-w-review-avatar {     
     border: none !important;    
 		top: 25px;    
@@ -32,7 +33,7 @@ _Плохо:_
 ```
 
 _Хорошо:_
-```css
+```less
 .ul-w-review {    
   &-avatar {...}    
   &-titles {...}    
@@ -45,7 +46,7 @@ _Хорошо:_
 __Пример 1:__
 
 _Плохо:_
-```css
+```less
 .transition (@duration: 0.3s, @style: ease) {
 	-webkit-transition: @duration all @style;
 	-moz-transition: @duration all @style;
@@ -56,7 +57,7 @@ _Плохо:_
 ```
 
 _Хорошо:_
-```css
+```less
 .transition (@duration: 0.3s, @style: ease) {
 	transition: @duration all @style;
 }
@@ -69,7 +70,7 @@ _Хорошо:_
 __Пример 2:__
 
 _Плохо:_
-```css
+```less
 .textCenter{
 	text-align: center;
 	text-align: -webkit-center; 
@@ -78,7 +79,7 @@ _Плохо:_
 ```
 
 _Хорошо:_
-```css
+```less
 .textCenter{
 	text-align: center;
 }
@@ -88,3 +89,36 @@ _Хорошо:_
 
 
 [w3: text-align](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align)
+
+#### Цветовая схема
+
+Миксин .blockTheme(@arguments) должен включать __только__ цветовые определения для элементов. Все CSS-правила, которые относятся к блочной модели, позиционированию, контенту элемента должны располагаться в миксине .behavior().
+
+__Пример 1:__
+
+_Плохо:_
+```less
+.parent {
+	&-design1 {
+		&-titles {
+			border: none
+
+			&:before { content: none; }
+			.ul-w-review-name { color: @blockColor; }
+			.ul-w-review-extra { color: @textColor; }
+		}
+	}
+}
+```
+
+_Хорошо:_
+```less
+.parent {
+	&-design1 {
+		&-titles {
+			.ul-w-review-name { color: @blockColor; }
+			.ul-w-review-extra { color: @textColor; }
+		}
+	}
+}
+```
