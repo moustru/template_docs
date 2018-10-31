@@ -71,7 +71,7 @@ __Пример 2:__
 
 _Плохо:_
 ```less
-.textCenter{
+.textCenter {
 	text-align: center;
 	text-align: -webkit-center; 
 	text-align: -moz-center;
@@ -80,7 +80,7 @@ _Плохо:_
 
 _Хорошо:_
 ```less
-.textCenter{
+.textCenter {
 	text-align: center;
 }
 ```
@@ -99,13 +99,10 @@ __Пример 1:__
 _Плохо:_
 ```less
 .parent {
-	&-design1 {
-		&-titles {
-			border: none
-
-			&:before { content: none; }
-			.ul-w-review-name { color: @blockColor; }
-			.ul-w-review-extra { color: @textColor; }
+	.ul-widget {
+		&-style1 { 
+			background: @text1; 
+			position: relative;
 		}
 	}
 }
@@ -114,11 +111,8 @@ _Плохо:_
 _Хорошо:_
 ```less
 .parent {
-	&-design1 {
-		&-titles {
-			.ul-w-review-name { color: @blockColor; }
-			.ul-w-review-extra { color: @textColor; }
-		}
+	.ul-widget {
+		&-style1 { background: @text1; }
 	}
 }
 ```
