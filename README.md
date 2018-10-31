@@ -5,6 +5,7 @@
 2. Миксины и функции
 3. Правила наименования селекторов
 4. Правила свойств
+5. Префиксы в миксинах
 
 #### Переменные:
 Цвет необходимо указывать в названии переменной. Например:  
@@ -18,8 +19,8 @@
 * По возможности убираем `!important`. В идеале - их не должно быть вообще
 * Если определены стили для классов, которые совпадают по имени хотя бы на 50% - выделяем общий селектор и наследуем элементы. Пример:  
 
-Было:
-```
+_Плохо:_
+```css
 .ul-w-review-avatar {     
     border: none !important;    
 		top: 25px;    
@@ -30,10 +31,60 @@
 }   
 ```
 
-Стало:
-```
+_Хорошо:_
+```css
 .ul-w-review {    
   &-avatar {...}    
   &-titles {...}    
 }   
 ```
+
+#### Префиксы в миксинах
+* Миксины, которые включают свойства с поддержкой  без префиксов в IE11+, Chrome 67+, Mozilla 58+, Opera 50+, iOS Safari 10+, должны быть без префиксов. Предварительно убедившись в том, что существующие стили не попадают в исключения при использовании CSS свойств.
+
+__Пример 1:__
+
+_Плохо:_
+```css
+.transition (@duration: 0.3s, @style: ease) {
+	-webkit-transition: @duration all @style;
+	-moz-transition: @duration all @style;
+	-ms-transition: @duration all @style;
+	-o-transition: @duration all @style;
+	transition: @duration all @style;
+}
+```
+
+_Хорошо:_
+```css
+.transition (@duration: 0.3s, @style: ease) {
+	transition: @duration all @style;
+}
+```
+
+![caniuse transition](http://dl3.joxi.net/drive/2018/10/31/0032/1904/2115440/40/cd6cd4190b.jpg)
+
+[caniuse: transition](https://caniuse.com/#search=transition)
+
+__Пример 2:__
+
+_Плохо:_
+```css
+.textCenter{
+	text-align: center;
+	text-align: -webkit-center; 
+	text-align: -moz-center;
+}
+```
+
+_Хорошо:_
+```css
+.textCenter{
+	text-align: center;
+}
+```
+
+![text-align compability](http://dl3.joxi.net/drive/2018/10/31/0032/1904/2115440/40/1846ba3a03.jpg)
+
+
+[w3: text-align](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align)
